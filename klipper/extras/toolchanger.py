@@ -206,12 +206,13 @@ class Toolchanger:
 
         if wait == 1:
             raise gcmd.respond_info("Made it to 3")
-            target_range = 3  
-            raise gcmd.respond_info("Made it to 4")
             while True:
+                raise gcmd.respond_info("Made it to 4")
                 heater = tool.extruder.get_heater()
+                raise gcmd.respond_info("Made it to 5")
                 current_temp = heater.get_temperature()
-                if abs(current_temp - temp) <= target_range:
+                raise gcmd.respond_info("Made it to 6")
+                if abs(current_temp - temp) <= 3:
                     break
                 time.sleep(0.5) 
 
