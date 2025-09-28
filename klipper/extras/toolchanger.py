@@ -195,7 +195,7 @@ class Toolchanger:
 
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
-        wait = gcmd.get_int('WAIT', 0)
+        wait = gcmd.get_int('WAIT', 0) == 0
         tool = self._get_tool_from_gcmd(gcmd)
         if not tool.extruder:
             raise gcmd.error(
