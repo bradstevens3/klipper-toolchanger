@@ -203,9 +203,8 @@ class Toolchanger:
                     tool.name))
 
         heaters = self.printer.lookup_object('heaters')
-        heater = tool.extruder.get_heater()
         print("Made it to 1")
-        heaters.set_temperature(heater, temp, wait=False)  # We will handle waiting manually
+        heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)  # We will handle waiting manually
         print("Made it to 2")
 
         if wait:
