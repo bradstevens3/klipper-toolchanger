@@ -195,7 +195,7 @@ class Toolchanger:
 
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
-        wait = gcmd.get_int('WAIT', 0) == 0
+        wait = gcmd.get_int('WAIT', 0) == 1
         tool = self._get_tool_from_gcmd(gcmd)
         if not tool.extruder:
             raise gcmd.error(
@@ -204,10 +204,10 @@ class Toolchanger:
 
         heaters = self.printer.lookup_object('heaters')
         raise gcmd.respond_info("Made it to 1")
-        heaters.set_temperature(tool.extruder.get_heater(), temp, wait)  # We will handle waiting manually
+        heaters.set_temperature(tool.extruder.get_heater(), temp)  # We will handle waiting manually
         raise gcmd.respond_info("Made it to 2")
 
-        if wait == 0:
+        if wait == 1:
             raise gcmd.respond_info("Made it to 3")
             reactor = self.printer.get_reactor()  # Needed to sleep non-blockingly
             target_range = 3.0  # Degrees Celsius tolerance
