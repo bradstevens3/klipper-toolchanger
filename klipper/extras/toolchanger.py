@@ -204,9 +204,9 @@ class Toolchanger:
 
         heaters = self.printer.lookup_object('heaters')
         raise gcmd.respond_info("Made it to 0")
-        heater = tool.extruder.get_heater()
+        curheater = tool.extruder.get_heater()
         raise gcmd.respond_info("Made it to 1")
-        heaters.set_temperature(heater, temp, wait)  # We will handle waiting manually
+        heaters.set_temperature(curheater, temp, wait)  # We will handle waiting manually
         raise gcmd.respond_info("Made it to 2")
 
         if wait:
@@ -215,7 +215,7 @@ class Toolchanger:
             target_range = 3.0  # Degrees Celsius tolerance
             raise gcmd.respond_info("Made it to 4")
             while True:
-                current_temp = heater.get_temperature()
+                current_temp = curheater.get_temperature()
                 if abs(current_temp - temp) <= target_range:
                     break
                 reactor.pause(0.1)  # Wait 100ms before checking again
