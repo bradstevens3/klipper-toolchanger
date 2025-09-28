@@ -204,7 +204,7 @@ class Toolchanger:
 
         heaters = self.printer.lookup_object('heaters')
         raise gcmd.respond_info("Made it to 1")
-        heaters.set_temperature(tool.extruder.get_heater(), temp)  # We will handle waiting manually
+        heaters.set_temperature(tool.extruder.get_heater(), temp, 0)  # We will handle waiting manually
         raise gcmd.respond_info("Made it to 2")
 
         if wait == 1:
