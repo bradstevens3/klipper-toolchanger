@@ -204,17 +204,17 @@ class Toolchanger:
         heaters = self.printer.lookup_object('heaters')
         heaters.set_temperature(tool.extruder.get_heater(), temp, 0)
 
-        if wait == 1:
-            raise gcmd.respond_info("Made it to 3")
-            while True:
-                raise gcmd.respond_info("Made it to 4")
-                heater = tool.extruder.get_heater()
-                raise gcmd.respond_info("Made it to 5")
-                current_temp = heater.get_temperature()
-                raise gcmd.respond_info("Made it to 6")
-                if abs(current_temp - temp) <= 3:
-                    break
-                time.sleep(0.5) 
+        # if wait == 1:
+            #raise gcmd.respond_info("Made it to 3")
+        while wait = 1:
+            raise gcmd.respond_info("Made it to 4")
+            heater = tool.extruder.get_heater()
+            raise gcmd.respond_info("Made it to 5")
+            current_temp = heater.get_temperature()
+            raise gcmd.respond_info("Made it to 6")
+            if abs(current_temp - temp) <= 3:
+                wait == 0
+            time.sleep(0.5) 
 
     def _get_tool_from_gcmd(self, gcmd):
         tool_name = gcmd.get('TOOL', None)
