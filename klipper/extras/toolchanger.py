@@ -208,7 +208,7 @@ class Toolchanger:
 
         if wait:
             reactor = self.printer.get_reactor()  # Needed to sleep non-blockingly
-            target_range = 5.0  # Degrees Celsius tolerance
+            target_range = 3.0  # Degrees Celsius tolerance
             while True:
                 current_temp = heater.get_temperature()
                 if abs(current_temp - temp) <= target_range:
