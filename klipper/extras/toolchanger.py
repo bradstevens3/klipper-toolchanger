@@ -206,7 +206,6 @@ class Toolchanger:
 
         if wait == 1:
             raise gcmd.respond_info("Made it to 3")
-            reactor = self.printer.get_reactor()  # Needed to sleep non-blockingly
             target_range = 3.0  # Degrees Celsius tolerance
             raise gcmd.respond_info("Made it to 4")
             while True:
@@ -214,7 +213,7 @@ class Toolchanger:
                 current_temp = heater.get_temperature()
                 if abs(current_temp - temp) <= target_range:
                     break
-                reactor.pause(0.1)  # Wait 100ms before checking again
+                time.sleep(0.5) # Pauses for half a second
 
     def _get_tool_from_gcmd(self, gcmd):
         tool_name = gcmd.get('TOOL', None)
