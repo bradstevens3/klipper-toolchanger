@@ -204,11 +204,15 @@ class Toolchanger:
 
         heaters = self.printer.lookup_object('heaters')
         heater = tool.extruder.get_heater()
+        print("Made it to 1")
         heaters.set_temperature(heater, temp, wait=False)  # We will handle waiting manually
+        print("Made it to 2")
 
         if wait:
+            print("Made it to 3")
             reactor = self.printer.get_reactor()  # Needed to sleep non-blockingly
             target_range = 3.0  # Degrees Celsius tolerance
+            print("Made it to 4")
             while True:
                 current_temp = heater.get_temperature()
                 if abs(current_temp - temp) <= target_range:
