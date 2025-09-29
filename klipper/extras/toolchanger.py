@@ -213,7 +213,7 @@ class Toolchanger:
         if wait_cmd:
             gcmd.respond_info("4")
             #gcmd.respond_info("extruder_name %s" % (extruder_name))
-            gcmd.respond_info("tool_nr %s" % (tool_nr))
+            #gcmd.respond_info("tool_nr %s" % (tool_nr))
             gcmd.respond_info("tool %s" % (tool))
             #temp_info = extruder_name.get_temp()
             #current = temp_info["temperature"]
