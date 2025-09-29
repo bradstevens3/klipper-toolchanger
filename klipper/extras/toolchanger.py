@@ -211,7 +211,7 @@ class Toolchanger:
             raise gcmd.respond_info("Made it to 5")
             heater = tool.extruder.get_heater()
             raise gcmd.respond_info("Made it to 6")
-            current_temp = .get_status
+            current_temp = heater.get_status
             #current_temp = tool.extruder.get_heater(get_temperature())
             raise gcmd.respond_info("Made it to 7")
             if abs(current_temp - temp) <= 3:
