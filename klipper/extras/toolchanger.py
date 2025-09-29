@@ -192,7 +192,7 @@ class Toolchanger:
         raise gcmd.error("Select tool: Either TOOL or T needs to be specified")
 
     cmd_SET_TOOL_TEMPERATURE_help = 'Set temperature for tool'
-
+    
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
         wait = gcmd.get_int('WAIT', 0) == 1
@@ -202,15 +202,15 @@ class Toolchanger:
                 "SET_TOOL_TEMPERATURE: No extruder specified for tool %s" % (
                     tool.name))
         heaters = self.printer.lookup_object('heaters')
-        #raise gcmd.respond_info("heaters = " % (heaters))
-        raise gcmd.respond_info("tool.extruder.get_heater() = " % (tool.extruder.get_heater()))
         heaters.set_temperature(tool.extruder.get_heater(), temp, 0)
 
         # if wait == 1:
             #raise gcmd.respond_info("Made it to 3")
         while wait > 0:
             raise gcmd.respond_info("Made it to 5")
-            current_temp = tool.extruder.get_heater(get_temperature())
+            heater = tool.extruder.get_heater()
+            current_temp = heater.get_temperature()
+            #current_temp = tool.extruder.get_heater(get_temperature())
             raise gcmd.respond_info("Made it to 6")
             if abs(current_temp - temp) <= 3:
                 wait == 0
