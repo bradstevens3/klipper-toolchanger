@@ -205,7 +205,8 @@ class Toolchanger:
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
         if wait_cmd:
             gcmd.respond_info("tool_name %s" % (tool.name))
-            gcmd.respond_info("tool_name %s" % (tool_nr))
+            gcmd.respond_info("tool_nr %s" % (tool_nr))
+            gcmd.respond_info("tool %s" % (tool))
             #cur_temp = self.get_toolhead_temperature(tool, gcmd)
             #gcmd.respond_info(f"Current temp: {cur_temp:.1f}°C / Target: {temp:.1f}°C")
 
