@@ -194,7 +194,7 @@ class Toolchanger:
     cmd_SET_TOOL_TEMPERATURE_help = 'Set temperature for tool'
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
-        wait = gcmd.get_int('WAIT', 0) == 1
+        wait_cmd = gcmd.get_int('WAIT', 0) == 1
         tool = self._get_tool_from_gcmd(gcmd)
         if not tool.extruder:
             raise gcmd.error(
@@ -202,6 +202,8 @@ class Toolchanger:
                     tool.name))
         heaters = self.printer.lookup_object('heaters')
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
+        if wait_cmd:
+            gcmd.respond_info("wait_cmd was true")
 
     def _get_tool_from_gcmd(self, gcmd):
         tool_name = gcmd.get('TOOL', None)
