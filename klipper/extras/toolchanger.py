@@ -211,7 +211,7 @@ class Toolchanger:
 
         # if wait == 1:
             #raise gcmd.respond_info("Made it to 3")
-        while wait > 0:
+        while wait = 1:
             reactor = self.printer.get_reactor()
             tolerance = 5.0  # degrees Celsius
             cur_temp = heater.get_temp()['temperature']
