@@ -205,11 +205,6 @@ class Toolchanger:
         heater = tool.extruder
         heaters.set_temperature(tool.extruder.get_heater(), temp, 0)
         raise gcmd.respond_info("Made it to 3")
-        #raise gcmd.respond_info("tool.extruder.get_heater() is %s" % (tool.extruder.get_heater()))
-        #tool_nr = gcmd.get_int('T', None)
-        #raise gcmd.respond_info("self.lookup_tool(tool_nr) is %s" % (self.lookup_tool(tool_nr)))
-        #raise gcmd.respond_info("heaters is %s" % (heaters))
-
         if wait == 1:
             raise gcmd.respond_info("Made it to 4")
             while True:
