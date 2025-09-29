@@ -209,9 +209,10 @@ class Toolchanger:
         while wait > 0:
             raise gcmd.respond_info("Made it to 5")
             heater = extruder.get_heater()
+            raise gcmd.respond_info("Made it to 6")
             current_temp = heater.get_status
             #current_temp = tool.extruder.get_heater(get_temperature())
-            raise gcmd.respond_info("Made it to 6")
+            raise gcmd.respond_info("Made it to 7")
             if abs(current_temp - temp) <= 3:
                 wait == 0
             reactor.pause(0.1)
