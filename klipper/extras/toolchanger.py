@@ -203,9 +203,8 @@ class Toolchanger:
         heater = tool.extruder.get_heater()  
         heaters = self.printer.lookup_object('heaters')
         heaters.set_temperature(tool.extruder.get_heater(), target_temp, wait=False)
-        if not wait_cmd:
-            return
-            
+        if not wait_cmd or target_temp == 0:
+            return 
         # Wait until temperature is within tolerance
         tolerance = 5.0
         reactor = self.printer.get_reactor()
