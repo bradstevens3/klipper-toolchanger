@@ -197,7 +197,7 @@ class Toolchanger:
         temp = gcmd.get_float('TARGET', 0.)
         wait = gcmd.get_int('WAIT', 0) == 1
         tool = self._get_tool_from_gcmd(gcmd)
-        raise gcmd.respond_info("tool_name is %s" % (tool.name))
+        raise gcmd.respond_info("tool is %s" % (tool))
         if not tool.extruder:
             raise gcmd.error(
                 "SET_TOOL_TEMPERATURE: No extruder specified for tool %s" % (
