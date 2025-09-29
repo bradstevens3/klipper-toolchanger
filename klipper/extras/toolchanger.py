@@ -191,12 +191,17 @@ class Toolchanger:
             return
         raise gcmd.error("Select tool: Either TOOL or T needs to be specified")
 
+    def get_extruder_name_for_tool(tool):
+        tool = tool.strip().upper().replace("TOOL ", "")
+        index = int(tool[1:])  # e.g., "T1" → 1
+        return "extruder" if index == 0 else f"extruder{index}"
+    
     cmd_SET_TOOL_TEMPERATURE_help = 'Set temperature for tool'
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
         wait_cmd = gcmd.get_int('WAIT', 0) == 1
         tool = self._get_tool_from_gcmd(gcmd)
-        tool_nr = gcmd.get_int('T', None)
+        extruder_name = get_extruder_name_for_tool(tool.name)
         if not tool.extruder:
             raise gcmd.error(
                 "SET_TOOL_TEMPERATURE: No extruder specified for tool %s" % (
@@ -206,9 +211,10 @@ class Toolchanger:
         if wait_cmd:
             gcmd.respond_info("tool_name %s" % (tool.name))
             gcmd.respond_info("tool_nr %s" % (tool_nr))
-            gcmd.respond_info("tool %s" % (tool))
+            temp_info = extruder_name.get_temp()
+            current = temp_info["temperature"]
             #cur_temp = self.get_toolhead_temperature(tool, gcmd)
-            #gcmd.respond_info(f"Current temp: {cur_temp:.1f}°C / Target: {temp:.1f}°C")
+            gcmd.respond_info(f"Current temp: {cur_temp:.1f}°C / Target: {temp:.1f}°C")
 
     def _get_tool_from_gcmd(self, gcmd):
         tool_name = gcmd.get('TOOL', None)
