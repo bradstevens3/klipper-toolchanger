@@ -206,13 +206,13 @@ class Toolchanger:
             raise gcmd.error(
                 "SET_TOOL_TEMPERATURE: No extruder specified for tool %s" % (
                     tool.name))
-        extruder_name = f"extruder{tool}"
+        extruder_name = tool.extruder.name
         heaters = self.printer.lookup_object('heaters')
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
         gcmd.respond_info("3")
         if wait_cmd:
             gcmd.respond_info("4")
-            #gcmd.respond_info("extruder_name %s" % (extruder_name))
+            gcmd.respond_info("extruder_name %s" % (extruder_name))
             #gcmd.respond_info("tool_nr %s" % (tool_nr))
             gcmd.respond_info("tool %s" % (tool))
             #temp_info = extruder_name.get_temp()
