@@ -209,7 +209,8 @@ class Toolchanger:
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
         if wait_cmd:
             heater = tool.extruder.get_heater()    
-            cur_temp = heater.get_temp()            
+            eventtime = gcmd.get_event_time()
+            cur_temp = heater.get_temp(eventtime)           
             gcmd.respond_info("cur_temp %s" % (cur_temp))
 
     def _get_tool_from_gcmd(self, gcmd):
