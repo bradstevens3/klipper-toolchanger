@@ -210,7 +210,7 @@ class Toolchanger:
         #raise gcmd.respond_info("self.lookup_tool(tool_nr) is %s" % (self.lookup_tool(tool_nr)))
         #raise gcmd.respond_info("heaters is %s" % (heaters))
 
-        if wait = 1:
+        if wait == 1:
             raise gcmd.respond_info("Made it to 4")
             while True:
                 raise gcmd.respond_info("Made it to 5")
