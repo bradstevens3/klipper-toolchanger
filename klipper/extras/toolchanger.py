@@ -214,9 +214,10 @@ class Toolchanger:
             extruder = tool.extruder
             #extruder = self.printer.lookup_object(extruder_name)
             gcmd.respond_info("extruder %s" % (extruder))
-            temp_info = extruder.get_temp()
-            gcmd.respond_info("temp_info %s" % (temp_info))
-            cur_temp = temp_info["temperature"]
+            #temp_info = extruder.get_temp()
+            #gcmd.respond_info("temp_info %s" % (temp_info))
+            #cur_temp = temp_info["temperature"]
+            cur_temp = tool.extruder.get_temp()["temperature"]
             gcmd.respond_info("cur_temp %s" % (cur_temp))
             #cur_temp = self.get_toolhead_temperature(tool, gcmd)
             gcmd.respond_info(f"Current temp: {cur_temp:.1f}°C / Target: {temp:.1f}°C")
