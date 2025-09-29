@@ -190,11 +190,6 @@ class Toolchanger:
             self.select_tool(gcmd, tool, restore_axis)
             return
         raise gcmd.error("Select tool: Either TOOL or T needs to be specified")
-
-    #def get_extruder_name_for_tool(tool):
-        #tool = tool.strip().upper().replace("TOOL ", "")
-        #index = int(tool[1:])  # e.g., "T1" → 1
-        #return "extruder" if index == 0 else f"extruder{index}"
     
     cmd_SET_TOOL_TEMPERATURE_help = 'Set temperature for tool'
     
@@ -220,16 +215,7 @@ class Toolchanger:
             # Check if within range
             if abs(cur_temp - target_temp) <= tolerance:
                 break
-            # Optional: print status every few seconds
-            gcmd.respond_info(f"Waiting: {cur_temp:.1f}°C / Target: {target_temp:.1f}°C")
             reactor.pause(1.0)  # sleep 1 second
-
-        
-        #if wait_cmd:
-            #heater = tool.extruder.get_heater()    
-            #eventtime = self.printer.get_reactor().monotonic()
-            #cur_temp, _ = heater.get_temp(eventtime) 
-            #gcmd.respond_info(f"Current temp: {cur_temp:.1f}°C / Target: {target_temp:.1f}°C")
 
     def _get_tool_from_gcmd(self, gcmd):
         tool_name = gcmd.get('TOOL', None)
