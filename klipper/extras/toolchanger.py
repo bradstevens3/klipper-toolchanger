@@ -211,7 +211,8 @@ class Toolchanger:
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
         if wait_cmd:
             gcmd.respond_info("extruder_name %s" % (extruder_name))
-            temp_info = extruder_name.get_temp()
+            extruder = self.printer.lookup_object(extruder_name)
+            temp_info = extruder.get_temp()
             gcmd.respond_info("temp_info %s" % (temp_info))
             cur_temp = temp_info["temperature"]
             gcmd.respond_info("cur_temp %s" % (cur_temp))
