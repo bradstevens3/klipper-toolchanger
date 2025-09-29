@@ -209,7 +209,7 @@ class Toolchanger:
         heaters.set_temperature(tool.extruder.get_heater(), temp, wait=False)
         if wait_cmd:
             heater = tool.extruder.get_heater()    
-            eventtime = gcmd.get_event_time()
+            eventtime = self.printer.get_reactor().monotonic()
             cur_temp = heater.get_temp(eventtime)           
             gcmd.respond_info("cur_temp %s" % (cur_temp))
 
