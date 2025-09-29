@@ -202,6 +202,7 @@ class Toolchanger:
                     tool.name))
         heaters = self.printer.lookup_object('heaters')
         heaters.set_temperature(tool.extruder.get_heater(), temp, 0)
+        raise gcmd.respond_info("self.name is %s"(self.name))
 
         # if wait == 1:
             #raise gcmd.respond_info("Made it to 3")
