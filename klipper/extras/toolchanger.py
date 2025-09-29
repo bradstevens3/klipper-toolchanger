@@ -192,12 +192,10 @@ class Toolchanger:
         raise gcmd.error("Select tool: Either TOOL or T needs to be specified")
 
     cmd_SET_TOOL_TEMPERATURE_help = 'Set temperature for tool'
-    
     def cmd_SET_TOOL_TEMPERATURE(self, gcmd):
         temp = gcmd.get_float('TARGET', 0.)
         wait = gcmd.get_int('WAIT', 0) == 1
         tool = self._get_tool_from_gcmd(gcmd)
-        raise gcmd.respond_info("tool is %s" % (tool))
         if not tool.extruder:
             raise gcmd.error(
                 "SET_TOOL_TEMPERATURE: No extruder specified for tool %s" % (
