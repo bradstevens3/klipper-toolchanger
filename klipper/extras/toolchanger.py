@@ -212,6 +212,7 @@ class Toolchanger:
         if wait_cmd:
             gcmd.respond_info("extruder_name %s" % (extruder_name))
             extruder = self.printer.lookup_object(extruder_name)
+            gcmd.respond_info("extruder %s" % (extruder))
             temp_info = extruder.get_temp()
             gcmd.respond_info("temp_info %s" % (temp_info))
             cur_temp = temp_info["temperature"]
